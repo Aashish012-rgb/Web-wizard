@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about common cyber threats and how to protect yourself">
+    <title>Common Threats | CyberPulse NP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0D1B2A;
+            --accent-red: #FF6B35;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #bfbcbc;
+            --shadow: 0 4px 15px rgba(10, 25, 47, 0.1);
+            --shadow-hover: 0 8px 25px rgba(10, 25, 47, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-text-primary {
+            color: var(--primary-navy);
+        }
+
+        .logo-text-accent {
+            color: var(--accent-red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-red);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-red);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--accent-red);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #b91f1f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 40, 40, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-navy);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1a2f4f 100%);
+            color: var(--white);
+            padding: 60px 2rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: slideInUp 0.8s ease 0.2s backwards;
+        }
+
+        /* ===== CONTENT SECTION ===== */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-navy);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 1rem;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .content h3 {
+            font-size: 1.4rem;
+            color: var(--primary-navy);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .content p {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .threat-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-red);
+            transition: var(--transition);
+            animation: slideInUp 0.8s ease;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .threat-card:nth-child(1) { animation-delay: 0.1s; }
+        .threat-card:nth-child(2) { animation-delay: 0.2s; }
+        .threat-card:nth-child(3) { animation-delay: 0.3s; }
+        .threat-card:nth-child(4) { animation-delay: 0.4s; }
+        .threat-card:nth-child(5) { animation-delay: 0.5s; }
+        .threat-card:nth-child(6) { animation-delay: 0.6s; }
+        .threat-card:nth-child(7) { animation-delay: 0.7s; }
+        .threat-card:nth-child(8) { animation-delay: 0.8s; }
+        .threat-card:nth-child(9) { animation-delay: 0.9s; }
+        .threat-card:nth-child(10) { animation-delay: 1s; }
+
+        .threat-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateX(5px);
+        }
+
+        .threat-card h3 {
+            color: var(--primary-navy);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .threat-level {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .threat-level.critical {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .threat-level.high {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        .threat-level.medium {
+            background-color: #cfe2ff;
+            color: #084298;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--accent-red);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            color: #856404;
+        }
+
+        .danger {
+            background-color: #f8d7da;
+            border-left: 4px solid #721c24;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            color: #721c24;
+        }
+
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .threat-box {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--accent-red);
+        }
+
+        .threat-box h4 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .threat-box p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1a2332 100%);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 0;
+            border-top: 3px solid var(--accent-red);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(214, 40, 40, 0.3);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.9;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(214, 40, 40, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-red);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 40px 1.5rem;
+            }
+
+            .content h2 {
+                font-size: 1.8rem;
+            }
+
+            .threat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .content h2 {
+                font-size: 1.4rem;
+            }
+
+            .content h3 {
+                font-size: 1.1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER & NAVIGATION ===== -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-text-primary">Cyber</span><span class="logo-text-accent">Pulse</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rights.html">Digital Rights</a></li>
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="threats.html" class="active">Threats</a></li>
+                <li><a href="index.html#contact" class="cta-button">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <h1><i class="fas fa-exclamation-triangle"></i> Common Cyber Threats</h1>
+        <p>Know the threats to protect yourself and your loved ones</p>
+    </section>
+
+    <!-- ===== CONTENT ===== -->
+    <section class="content">
+        <h2>Understanding Cyber Threats</h2>
+        <p>
+            Cyber threats are constantly evolving. Criminals use sophisticated techniques to trick you into revealing information 
+            or compromising your devices. The good news? Most threats can be prevented with knowledge and caution.
+        </p>
+
+        <div class="highlight">
+            <strong><i class="fas fa-book"></i> Key Understanding:</strong> Recognizing and understanding these threats is your first line of defense. 
+            An informed user is a protected user.
+        </div>
+
+        <h2>1. Phishing Attacks</h2>
+        <div class="threat-card">
+            <div class="threat-level critical">ATTACK LEVEL: CRITICAL</div>
+            <h3><i class="fas fa-fish"></i> What is Phishing?</h3>
+            <p>
+                Phishing is when attackers use deceptive emails, messages, or websites to trick you into revealing personal 
+                information, passwords, or clicking malicious links.
+            </p>
+
+            <h4>How Attackers Do It:</h4>
+            <ul>
+                <li>Create fake emails that look like they're from your bank, PayPal, or favorite service</li>
+                <li>Include official logos and branding to appear legitimate</li>
+                <li>Create urgency ("Your account will be closed in 24 hours!")</li>
+                <li>Include links that direct you to fake websites</li>
+                <li>Ask you to "verify" or "confirm" your information</li>
+            </ul>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Never click links in unsolicited emails</li>
+                <li>Type the website URL directly into your browser</li>
+                <li>Check the sender's email address carefully</li>
+                <li>Look for grammar and spelling errors</li>
+                <li>Legitimate organizations never ask for passwords via email</li>
+                <li>Hover over links to see their real destination</li>
+                <li>Report phishing emails to your email provider</li>
+            </ul>
+        </div>
+
+        <h2>2. Malware</h2>
+        <div class="threat-card">
+            <div class="threat-level critical">ATTACK LEVEL: CRITICAL</div>
+            <h3><i class="fas fa-virus"></i> What is Malware?</h3>
+            <p>
+                Malware (malicious software) includes viruses, trojans, ransomware, and spyware that can damage your device 
+                or steal your information.
+            </p>
+
+            <div class="threat-grid">
+                <div class="threat-box">
+                    <h4><i class="fas fa-laptop"></i> Viruses</h4>
+                    <p>Replicate themselves and damage files or systems. Often spread through email attachments.</p>
+                </div>
+
+                <div class="threat-box">
+                    <h4><i class="fas fa-mask"></i> Trojans</h4>
+                    <p>Disguise as legitimate software but contain hidden malicious code or backdoors.</p>
+                </div>
+
+                <div class="threat-box">
+                    <h4><i class="fas fa-lock"></i> Ransomware</h4>
+                    <p>Encrypts your files and demands payment to unlock them. Very dangerous.</p>
+                </div>
+
+                <div class="threat-box">
+                    <h4><i class="fas fa-eye"></i> Spyware</h4>
+                    <p>Secretly monitors your activities, stealing passwords and personal information.</p>
+                </div>
+            </div>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Install and maintain updated antivirus/anti-malware software</li>
+                <li>Keep your operating system and software updated</li>
+                <li>Don't open suspicious attachments or files</li>
+                <li>Download software only from official websites</li>
+                <li>Be cautious with torrents and file-sharing sites</li>
+                <li>Scan USB drives before using them</li>
+                <li>Regular backups can help recover from ransomware</li>
+            </ul>
+        </div>
+
+        <h2>3. Password Attacks</h2>
+        <div class="threat-card">
+            <div class="threat-level high">ATTACK LEVEL: HIGH</div>
+            <h3><i class="fas fa-lock-open"></i> Types of Password Attacks</h3>
+
+            <h4>Brute Force Attacks:</h4>
+            <p>Hackers use software to try thousands of password combinations until they find the right one.</p>
+
+            <h4>Dictionary Attacks:</h4>
+            <p>Attackers use common words and password patterns to guess your password.</p>
+
+            <h4>Credential Stuffing:</h4>
+            <p>Using leaked usernames and passwords from other websites to access your accounts.</p>
+
+            <h4>Keylogging:</h4>
+            <p>Malware records your keyboard input, capturing passwords as you type.</p>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Use strong, unique passwords (12+ characters, mixed case, symbols, numbers)</li>
+                <li>Don't reuse passwords across different sites</li>
+                <li>Use a password manager securely</li>
+                <li>Enable two-factor authentication (2FA)</li>
+                <li>Never share your password</li>
+                <li>Change passwords immediately if you suspect compromise</li>
+            </ul>
+        </div>
+
+        <h2>4. Man-in-the-Middle (MITM) Attacks</h2>
+        <div class="threat-card">
+            <div class="threat-level high">ATTACK LEVEL: HIGH</div>
+            <h3><i class="fas fa-arrows-alt-h"></i> What is MITM?</h3>
+            <p>
+                An attacker intercepts communication between you and a website or service to steal data or impersonate one of the parties.
+            </p>
+
+            <h4>Common Scenarios:</h4>
+            <ul>
+                <li>Public WiFi network without encryption</li>
+                <li>Unsecured website (not HTTPS)</li>
+                <li>Compromised network router</li>
+            </ul>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Only use HTTPS websites (look for padlock icon)</li>
+                <li>Avoid public WiFi for sensitive transactions</li>
+                <li>Use a VPN on public networks</li>
+                <li>Verify SSL certificates on websites</li>
+                <li>Don't access banking on public WiFi</li>
+            </ul>
+        </div>
+
+        <h2>5. Social Engineering</h2>
+        <div class="threat-card">
+            <div class="threat-level high">ATTACK LEVEL: HIGH</div>
+            <h3><i class="fas fa-users"></i> What is Social Engineering?</h3>
+            <p>
+                Social engineering exploits human psychology to trick you into revealing information or taking actions 
+                that compromise security.
+            </p>
+
+            <h4>Common Methods:</h4>
+            <ul>
+                <li><strong>Pretexting:</strong> Attacker creates a false scenario to gain your trust</li>
+                <li><strong>Baiting:</strong> Offering something attractive (USB stick, free software)</li>
+                <li><strong>Quid Pro Quo:</strong> Promising something in exchange for information</li>
+                <li><strong>Tailgating:</strong> Following someone into restricted areas</li>
+                <li><strong>Reverse Social Engineering:</strong> Setting up a fake support scenario</li>
+            </ul>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Be skeptical of unsolicited contact</li>
+                <li>Verify identities before sharing information</li>
+                <li>Don't assume emails are legitimate based on appearance</li>
+                <li>Be cautious about overly friendly online interactions</li>
+                <li>Report suspicious behavior</li>
+                <li>Trust your instincts</li>
+            </ul>
+        </div>
+
+        <h2>6. DDoS (Distributed Denial of Service) Attacks</h2>
+        <div class="threat-card">
+            <div class="threat-level medium">ATTACK LEVEL: MEDIUM (For Individuals)</div>
+            <h3><i class="fas fa-ban"></i> What is DDoS?</h3>
+            <p>
+                A DDoS attack floods a website or service with so much traffic that legitimate users cannot access it.
+            </p>
+
+            <p>
+                While DDoS attacks primarily target websites and services rather than individual users, they can affect you 
+                if you rely on those services.
+            </p>
+
+            <h4>Protection (As a Service User):</h4>
+            <ul>
+                <li>Use services with DDoS protection</li>
+                <li>Have backup connection methods</li>
+                <li>Monitor service status</li>
+                <li>Contact service providers if you suspect attacks</li>
+            </ul>
+        </div>
+
+        <h2>7. Ransomware</h2>
+        <div class="threat-card">
+            <div class="threat-level critical">ATTACK LEVEL: CRITICAL</div>
+            <h3><i class="fas fa-lock"></i> What is Ransomware?</h3>
+            <p>
+                Ransomware encrypts your files and demands payment to decrypt them. It's one of the most dangerous threats today.
+            </p>
+
+            <div class="danger">
+                <strong><i class="fas fa-exclamation-triangle"></i> WARNING:</strong> NEVER pay ransoms. There's no guarantee your files will be recovered, and you'll fund future attacks.
+            </div>
+
+            <h4>How It Spreads:</h4>
+            <ul>
+                <li>Email attachments</li>
+                <li>Compromised websites</li>
+                <li>Malware downloads</li>
+                <li>Unpatched software vulnerabilities</li>
+            </ul>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Keep regular, offline backups of important files</li>
+                <li>Update your operating system and software regularly</li>
+                <li>Don't click suspicious email links or attachments</li>
+                <li>Use updated antivirus software</li>
+                <li>Use strong passwords and 2FA</li>
+                <li>Disconnect from the internet if infected (to prevent spread)</li>
+                <li>Report infections to authorities</li>
+            </ul>
+        </div>
+
+        <h2>8. Identity Theft</h2>
+        <div class="threat-card">
+            <div class="threat-level critical">ATTACK LEVEL: CRITICAL</div>
+            <h3><i class="fas fa-user-circle"></i> What is Identity Theft?</h3>
+            <p>
+                Identity theft occurs when someone uses your personal information to commit fraud or other crimes.
+            </p>
+
+            <h4>How Thieves Operate:</h4>
+            <ul>
+                <li>Steal information from data breaches</li>
+                <li>Use phishing to collect information</li>
+                <li>Hack email or social media accounts</li>
+                <li>Purchase stolen data on the dark web</li>
+            </ul>
+
+            <h4>What They Can Do:</h4>
+            <ul>
+                <li>Open bank accounts or credit cards in your name</li>
+                <li>Take out loans</li>
+                <li>Apply for government benefits</li>
+                <li>Commit tax fraud</li>
+            </ul>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Monitor your credit reports regularly</li>
+                <li>Place fraud alerts with credit bureaus</li>
+                <li>Keep personal information private</li>
+                <li>Shred sensitive documents</li>
+                <li>Use strong passwords and 2FA</li>
+                <li>Check financial statements regularly</li>
+                <li>Report suspicious activity immediately</li>
+            </ul>
+        </div>
+
+        <h2>9. Cyberbullying and Harassment</h2>
+        <div class="threat-card">
+            <div class="threat-level high">ATTACK LEVEL: HIGH</div>
+            <h3><i class="fas fa-frown"></i> What is Cyberbullying?</h3>
+            <p>
+                Cyberbullying involves using digital platforms to harass, threaten, embarrass, or humiliate someone.
+            </p>
+
+            <h4>Forms of Cyberbullying:</h4>
+            <ul>
+                <li>Offensive messages or comments</li>
+                <li>Sharing private or embarrassing information</li>
+                <li>Impersonation</li>
+                <li>Spreading rumors or false information</li>
+                <li>Exclusion from online groups</li>
+                <li>Doxxing (sharing personal information)</li>
+            </ul>
+
+            <h4>How to Protect Yourself:</h4>
+            <ul>
+                <li>Don't engage with bullies; don't respond</li>
+                <li>Save evidence of harassment</li>
+                <li>Block and report harassers</li>
+                <li>Don't share sensitive information online</li>
+                <li>Privacy settings should be strict</li>
+                <li>Tell a trusted adult if you're being bullied</li>
+                <li>Report to the platform and authorities</li>
+            </ul>
+        </div>
+
+        <h2>Staying Protected: Quick Reference</h2>
+        <div class="threat-card">
+            <h3><i class="fas fa-check"></i> Essential Protection Practices</h3>
+            <table style="width: 100%; border-collapse: collapse; margin-top: 1rem;">
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem; font-weight: 600;">Threat Type</td>
+                    <td style="padding: 0.8rem; font-weight: 600;">Best Defense</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Phishing</td>
+                    <td style="padding: 0.8rem;">Think before clicking; verify senders</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Malware</td>
+                    <td style="padding: 0.8rem;">Updated antivirus; don't open suspicious files</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Password Attacks</td>
+                    <td style="padding: 0.8rem;">Strong unique passwords; 2FA</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">MITM Attacks</td>
+                    <td style="padding: 0.8rem;">HTTPS only; avoid public WiFi</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Social Engineering</td>
+                    <td style="padding: 0.8rem;">Skepticism; verify identities</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Ransomware</td>
+                    <td style="padding: 0.8rem;">Regular backups; keep software updated</td>
+                </tr>
+                <tr style="border-bottom: 1px solid #ddd;">
+                    <td style="padding: 0.8rem;">Identity Theft</td>
+                    <td style="padding: 0.8rem;">Monitor credit; protect information</td>
+                </tr>
+                <tr>
+                    <td style="padding: 0.8rem;">Cyberbullying</td>
+                    <td style="padding: 0.8rem;">Block; report; don't engage</td>
+                </tr>
+            </table>
+        </div>
+
+        <h2>If You've Already Been Compromised</h2>
+        <ol>
+            <li><strong>Disconnect:</strong> If possible, disconnect from the internet immediately</li>
+            <li><strong>Report:</strong> Report to relevant authorities and the platform where it occurred</li>
+            <li><strong>Change Passwords:</strong> Change passwords from a safe device</li>
+            <li><strong>Monitor:</strong> Watch for unauthorized activity on your accounts</li>
+            <li><strong>Seek Help:</strong> Contact cybercrime helplines and banking institutions if needed</li>
+            <li><strong>Documentation:</strong> Keep records of everything for law enforcement</li>
+        </ol>
+
+        <div class="highlight">
+            <strong>Remember:</strong> Stay informed, stay vigilant, and don't hesitate to ask for help. 
+            Cybersecurity is a shared responsibility.
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>CyberPulse NP educates and empowers Nepali citizens with cybersecurity knowledge for a safer digital nation.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Mission</h4>
+                <ul>
+                    <li><strong>Educate</strong> - Provide cybersecurity training</li>
+                    <li><strong>Aware</strong> - Raise digital awareness</li>
+                    <li><strong>Practice</strong> - Promote safe habits</li>
+                    <li><strong>Empower</strong> - Enable citizen protection</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rights.html">Digital Rights</a></li>
+                    <li><a href="safety.html">Safety Guidelines</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Report Cybercrime</a></li>
+                    <li><a href="#">Emergency Help</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 CyberPulse NP. All rights reserved.</p>
+            <p>Pulse of Cybersecurity Education & Awareness 🇳🇵</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

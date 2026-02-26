@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Safe digital practices and cybersecurity guidelines for Cyprus citizens">
+    <title>Safety Guidelines | CyberPulse NP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0D1B2A;
+            --accent-red: #FF6B35;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --shadow: 0 4px 15px rgba(10, 25, 47, 0.1);
+            --shadow-hover: 0 8px 25px rgba(10, 25, 47, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-text-primary {
+            color: var(--primary-navy);
+        }
+
+        .logo-text-accent {
+            color: var(--accent-red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-red);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-red);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--accent-red);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #b91f1f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 40, 40, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-navy);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1a2f4f 100%);
+            color: var(--white);
+            padding: 60px 2rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: slideInUp 0.8s ease 0.2s backwards;
+        }
+
+        /* ===== CONTENT SECTION ===== */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-navy);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 1rem;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .content h3 {
+            font-size: 1.4rem;
+            color: var(--primary-navy);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .content p {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .safety-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-red);
+            transition: var(--transition);
+            animation: slideInUp 0.8s ease;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .safety-card:nth-child(1) { animation-delay: 0.1s; }
+        .safety-card:nth-child(2) { animation-delay: 0.2s; }
+        .safety-card:nth-child(3) { animation-delay: 0.3s; }
+        .safety-card:nth-child(4) { animation-delay: 0.4s; }
+        .safety-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .safety-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateX(5px);
+        }
+
+        .safety-card h3 {
+            color: var(--primary-navy);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .safety-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background-color: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            color: #155724;
+        }
+
+        .warning {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--accent-red);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            color: #856404;
+        }
+
+        .tip-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .tip-box {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            border-top: 3px solid var(--accent-red);
+        }
+
+        .tip-box h4 {
+            color: var(--primary-navy);
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-box p {
+            margin: 0;
+            font-size: 0.95rem;
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1a2332 100%);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 0;
+            border-top: 3px solid var(--accent-red);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(214, 40, 40, 0.3);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.9;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(214, 40, 40, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-red);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 40px 1.5rem;
+            }
+
+            .content h2 {
+                font-size: 1.8rem;
+            }
+
+            .tip-grid {
+                grid-template-columns: 1fr;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .content h2 {
+                font-size: 1.4rem;
+            }
+
+            .content h3 {
+                font-size: 1.1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER & NAVIGATION ===== -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-text-primary">Cyber</span><span class="logo-text-accent">Pulse</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rights.html">Digital Rights</a></li>
+                <li><a href="safety.html" class="active">Safety</a></li>
+                <li><a href="threats.html">Threats</a></li>
+                <li><a href="index.html#contact" class="cta-button">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <h1><i class="fas fa-shield-alt"></i> Safety Guidelines</h1>
+        <p>Essential practices to protect yourself and your family in the digital world</p>
+    </section>
+
+    <!-- ===== CONTENT ===== -->
+    <section class="content">
+        <h2>Introduction to Digital Safety</h2>
+        <p>
+            Digital safety is about protecting yourself, your information, and your family from online threats. 
+            By following these guidelines, you can significantly reduce your risk of becoming a victim of cybercrime.
+        </p>
+
+        <div class="highlight">
+            <strong><i class="fas fa-check"></i> Key Takeaway:</strong> Most cyber attacks can be prevented with basic safety practices. 
+            Stay informed, stay vigilant, and help others stay safe.
+        </div>
+
+        <h2>Password Security</h2>
+        <p>
+            Your passwords are the keys to your digital life. Use these guidelines to create and manage strong passwords:
+        </p>
+
+        <div class="tip-grid">
+            <div class="tip-box">
+                <h4><i class="fas fa-lock"></i> Create Strong Passwords</h4>
+                <p>Use 12+ characters with uppercase, lowercase, numbers, and symbols. Avoid birthdays or common words.</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-key"></i> Unique Passwords</h4>
+                <p>Use different passwords for each important account. If one is breached, others remain secure.</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-save"></i> Password Manager</h4>
+                <p>Use a password manager to securely store and generate strong passwords.</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-ban"></i> Never Share</h4>
+                <p>Never share your passwords, not even with family or close friends. Legitimate services never ask for it.</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-redo"></i> Change Regularly</h4>
+                <p>Change passwords every 3-6 months, especially for sensitive accounts like email and banking.</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-bullseye"></i> Multi-Factor Authentication</h4>
+                <p>Enable 2FA or MFA wherever possible for an extra layer of security.</p>
+            </div>
+        </div>
+
+        <h2>Personal Information Protection</h2>
+        <p>
+            Be careful about what personal information you share online. Here's what to protect:
+        </p>
+        <ul>
+            <li><strong>Social Security/ID Numbers:</strong> Never share online; only provide to verified organizations</li>
+            <li><strong>Financial Information:</strong> Credit card, bank account, or PayPal details should be shared only on secure websites</li>
+            <li><strong>Location Data:</strong> Avoid sharing your real-time location on social media</li>
+            <li><strong>Dates of Birth:</strong> This is used in identity theft; keep it private</li>
+            <li><strong>Personal Schedules:</strong> Don't post when you'll be away from home</li>
+            <li><strong>Family Information:</strong> Don't share details about family members, especially children</li>
+        </ul>
+
+        <h2>Safe Browsing Practices</h2>
+        <p>
+            The way you browse the internet greatly affects your security. Follow these practices:
+        </p>
+
+        <div class="safety-card">
+            <h3><i class="fas fa-globe"></i> Website Safety</h3>
+            <ul>
+                <li>Look for "https://" at the beginning of URLs for secure websites</li>
+                <li>Check for a padlock icon in the address bar</li>
+                <li>Avoid clicking links from unknown sources in emails or messages</li>
+                <li>Type important website addresses directly (e.g., your bank website)</li>
+                <li>Hover over links to see their real destination before clicking</li>
+            </ul>
+        </div>
+
+        <div class="safety-card">
+            <h3><i class="fas fa-search"></i> Recognizing Safe Websites</h3>
+            <ul>
+                <li>The website uses HTTPS encryption (look for the padlock)</li>
+                <li>The domain name matches the organization (not something like "bankofnepal-secure.com")</li>
+                <li>Professional design with no obvious errors or suspicious content</li>
+                <li>Clear contact information and privacy policy</li>
+                <li>No aggressive pop-ups or suspicious advertisements</li>
+            </ul>
+        </div>
+
+        <h2>Email and Messaging Safety</h2>
+
+        <div class="warning">
+            <strong><i class="fas fa-exclamation-triangle"></i> Warning:</strong> Email is one of the most common attack vectors. Be extremely careful with email!
+        </div>
+
+        <div class="safety-card">
+            <h3><i class="fas fa-envelope"></i> Email Safety Tips</h3>
+            <ul>
+                <li>Never open attachments from unknown senders</li>
+                <li>Don't click links in unsolicited emails</li>
+                <li>Be suspicious of emails asking for personal or financial information</li>
+                <li>Check the sender's actual email address (hover over the name)</li>
+                <li>Official organizations will never ask for passwords via email</li>
+                <li>Watch for poor grammar or spelling (common in phishing emails)</li>
+                <li>Use strong, unique passwords for your email account</li>
+                <li>Set up two-factor authentication for your email</li>
+            </ul>
+        </div>
+
+        <h2>Social Media Safety</h2>
+        <p>
+            Social media is a wonderful tool, but it requires caution:
+        </p>
+
+        <div class="safety-card">
+            <h3><i class="fas fa-users"></i> Social Media Best Practices</h3>
+            <ul>
+                <li>Review privacy settings on all social media accounts</li>
+                <li>Set your profile to private, not public</li>
+                <li>Be careful about friend requests from strangers</li>
+                <li>Don't accept files or links from people you don't know</li>
+                <li>Think before you post; the internet never forgets</li>
+                <li>Don't share too much personal information</li>
+                <li>Use unique passwords for each social media platform</li>
+                <li>Report and block suspicious or harassing accounts</li>
+            </ul>
+        </div>
+
+        <h2>Mobile Device Safety</h2>
+        <p>
+            Your phone or tablet is a valuable target for cybercriminals:
+        </p>
+
+        <div class="tip-grid">
+            <div class="tip-box">
+                <h4><i class="fas fa-mobile-alt"></i> Keep Updated</h4>
+                <p>Install security updates immediately. They patch critical vulnerabilities.</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-lock"></i> Use a Lock</h4>
+                <p>Use a PIN, password, or biometric lock (fingerprint, face recognition).</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-download"></i> App Safety</h4>
+                <p>Download apps only from official app stores (Google Play, Apple App Store).</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-wifi"></i> WiFi Security</h4>
+                <p>Avoid using public WiFi for sensitive activities like banking. Use a VPN if necessary.</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-sliders-h"></i> App Permissions</h4>
+                <p>Review and limit app permissions. Does a flashlight app really need access to your contacts?</p>
+            </div>
+
+            <div class="tip-box">
+                <h4><i class="fas fa-trash"></i> Regular Cleaning</h4>
+                <p>Uninstall unused apps and clear cache regularly.</p>
+            </div>
+        </div>
+
+        <h2>Online Banking Safety</h2>
+
+        <div class="warning">
+            <strong><i class="fas fa-exclamation-triangle"></i> Critical:</strong> Online banking requires your highest level of security awareness!
+        </div>
+
+        <ul>
+            <li>Only access your bank through the official website or app</li>
+            <li>Never click bank links in emails</li>
+            <li>Use strong passwords and change them regularly</li>
+            <li>Enable all security features your bank offers (alerts, 2FA, etc.)</li>
+            <li>Bank only on devices you trust and with secure internet connections</li>
+            <li>Never give your PIN or security codes to anyone</li>
+            <li>Log out completely when finished</li>
+            <li>Monitor your account regularly for unauthorized transactions</li>
+        </ul>
+
+        <h2>Family and Children Safety</h2>
+
+        <div class="safety-card">
+            <h3><i class="fas fa-users"></i> Protecting Your Family</h3>
+            <p><strong>Teach children:</strong></p>
+            <ul>
+                <li>Never share personal information online</li>
+                <li>Be respectful and kind in online interactions</li>
+                <li>Tell you if something makes them uncomfortable online</li>
+                <li>Not to meet people they've only met online</li>
+                <li>To recognize and report cyberbullying</li>
+            </ul>
+            <p><strong>Parents and guardians:</strong></p>
+            <ul>
+                <li>Monitor your child's online activity appropriately for their age</li>
+                <li>Use parental controls on devices</li>
+                <li>Have open conversations about online safety</li>
+                <li>Know your child's online friends</li>
+                <li>Set screen time limits</li>
+            </ul>
+        </div>
+
+        <h2>What to Do If You're Compromised</h2>
+        <p>
+            If you suspect you've been hacked or compromised:
+        </p>
+        <ol>
+            <li><strong>Change Passwords:</strong> Immediately change passwords for compromised accounts and related email</li>
+            <li><strong>Contact Your Bank:</strong> If financial information was exposed, alert your bank immediately</li>
+            <li><strong>Run Antivirus Scan:</strong> Scan your device with updated antivirus software</li>
+            <li><strong>Monitor Credit:</strong> Check credit reports for suspicious activity</li>
+            <li><strong>File Report:</strong> Report the incident to local police or cybercrime bureau</li>
+            <li><strong>Seek Help:</strong> Contact organizations that help cybercrime victims</li>
+        </ol>
+
+        <div class="highlight">
+            <strong><i class="fas fa-list"></i> Safety Checklist:</strong> Use this as a monthly reminder to review your digital security practices.
+        </div>
+
+        <h2>Your Digital Safety Checklist</h2>
+        <div class="safety-card">
+            <ul>
+                <li>✓ All passwords are strong and unique</li>
+                <li>✓ Two-factor authentication enabled on important accounts</li>
+                <li>✓ Software and apps are updated</li>
+                <li>✓ Antivirus software is installed and active</li>
+                <li>✓ Privacy settings reviewed on social media</li>
+                <li>✓ No suspicious emails opened or links clicked</li>
+                <li>✓ Important data backed up regularly</li>
+                <li>✓ Family members educated about online safety</li>
+                <li>✓ Credit monitoring in place if needed</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>CyberPulse NP educates and empowers Nepali citizens with cybersecurity knowledge for a safer digital nation.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Mission</h4>
+                <ul>
+                    <li><strong>Educate</strong> - Provide cybersecurity training</li>
+                    <li><strong>Aware</strong> - Raise digital awareness</li>
+                    <li><strong>Practice</strong> - Promote safe habits</li>
+                    <li><strong>Empower</strong> - Enable citizen protection</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="rights.html">Digital Rights</a></li>
+                    <li><a href="threats.html">Common Threats</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Report Cybercrime</a></li>
+                    <li><a href="#">Emergency Help</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 CyberPulse NP. All rights reserved.</p>
+            <p>Pulse of Cybersecurity Education & Awareness 🇳🇵</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

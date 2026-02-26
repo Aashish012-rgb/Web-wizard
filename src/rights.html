@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about your digital rights and privacy laws in Nepal">
+    <title>Digital Rights | CyberPulse NP</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-navy: #0D1B2A;
+            --accent-red: #FF6B35;
+            --light-bg: #f5f5f5;
+            --white: #ffffff;
+            --text-dark: #1a1a1a;
+            --text-light: #666666;
+            --shadow: 0 4px 15px rgba(10, 25, 47, 0.1);
+            --shadow-hover: 0 8px 25px rgba(10, 25, 47, 0.15);
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        /* ===== HEADER & NAVIGATION ===== */
+        header {
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-navy);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-text-primary {
+            color: var(--primary-navy);
+        }
+
+        .logo-text-accent {
+            color: var(--accent-red);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--accent-red);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent-red);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background-color: var(--accent-red);
+            color: var(--white);
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+        }
+
+        .cta-button:hover {
+            background-color: #b91f1f;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(214, 40, 40, 0.3);
+        }
+
+        .mobile-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .mobile-toggle span {
+            width: 25px;
+            height: 3px;
+            background-color: var(--primary-navy);
+            border-radius: 2px;
+            transition: var(--transition);
+        }
+
+        /* ===== PAGE HEADER ===== */
+        .page-hero {
+            background: linear-gradient(135deg, var(--primary-navy) 0%, #1a2f4f 100%);
+            color: var(--white);
+            padding: 60px 2rem;
+            text-align: center;
+            animation: fadeIn 0.8s ease;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            animation: slideInDown 0.8s ease;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto;
+            animation: slideInUp 0.8s ease 0.2s backwards;
+        }
+
+        /* ===== CONTENT SECTION ===== */
+        .content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 2rem;
+        }
+
+        .content h2 {
+            font-size: 2.2rem;
+            color: var(--primary-navy);
+            margin-top: 2.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 1rem;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .content h3 {
+            font-size: 1.4rem;
+            color: var(--primary-navy);
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            animation: slideInLeft 0.6s ease;
+        }
+
+        .content p {
+            color: var(--text-light);
+            margin-bottom: 1.2rem;
+            line-height: 1.8;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .content ul, .content ol {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+
+        .content li {
+            margin-bottom: 0.8rem;
+            line-height: 1.8;
+        }
+
+        .rights-card {
+            background-color: var(--white);
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--accent-red);
+            transition: var(--transition);
+            animation: slideInUp 0.8s ease;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .rights-card:nth-child(1) { animation-delay: 0.1s; }
+        .rights-card:nth-child(2) { animation-delay: 0.2s; }
+        .rights-card:nth-child(3) { animation-delay: 0.3s; }
+        .rights-card:nth-child(4) { animation-delay: 0.4s; }
+        .rights-card:nth-child(5) { animation-delay: 0.5s; }
+
+        .rights-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateX(5px);
+        }
+
+        .rights-card h3 {
+            color: var(--primary-navy);
+            margin-top: 0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .rights-card p {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            border-left: 4px solid var(--accent-red);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 6px;
+            color: var(--text-dark);
+        }
+
+        /* ===== FOOTER ===== */
+        footer {
+            background: linear-gradient(135deg, #0D1B2A 0%, #1a2332 100%);
+            color: var(--white);
+            padding: 3rem 2rem 1rem;
+            margin-top: 0;
+            border-top: 3px solid var(--accent-red);
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+            color: var(--accent-red);
+            font-weight: 600;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.7rem;
+        }
+
+        .footer-section a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-section a:hover {
+            color: var(--accent-red);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(214, 40, 40, 0.3);
+            padding-top: 2rem;
+            text-align: center;
+            opacity: 0.9;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-bottom p {
+            margin-bottom: 0.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(214, 40, 40, 0.2);
+            border-radius: 50%;
+            color: var(--white);
+            text-decoration: none;
+            transition: var(--transition);
+            font-size: 1.2rem;
+        }
+
+        .social-links a:hover {
+            background-color: var(--accent-red);
+            transform: translateY(-3px);
+        }
+
+        /* ===== ANIMATIONS ===== */
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        /* ===== RESPONSIVE ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: var(--white);
+                flex-direction: column;
+                padding: 1rem;
+                gap: 1rem;
+                box-shadow: var(--shadow);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-toggle {
+                display: flex;
+            }
+
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+
+            .content {
+                padding: 40px 1.5rem;
+            }
+
+            .content h2 {
+                font-size: 1.8rem;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-hero h1 {
+                font-size: 1.6rem;
+            }
+
+            .content h2 {
+                font-size: 1.4rem;
+            }
+
+            .content h3 {
+                font-size: 1.1rem;
+            }
+
+            .logo {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ===== HEADER & NAVIGATION ===== -->
+    <header>
+        <nav>
+            <a href="index.html" class="logo">
+                <span class="logo-text-primary">Cyber</span><span class="logo-text-accent">Pulse</span>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="rights.html" class="active">Digital Rights</a></li>
+                <li><a href="safety.html">Safety</a></li>
+                <li><a href="threats.html">Threats</a></li>
+                <li><a href="index.html#contact" class="cta-button">Contact</a></li>
+            </ul>
+            <div class="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- ===== PAGE HERO ===== -->
+    <section class="page-hero">
+        <h1><i class="fas fa-balance-scale"></i> Your Digital Rights</h1>
+        <p>Understanding your privacy, freedom, and legal protections in Nepal's digital world</p>
+    </section>
+
+    <!-- ===== CONTENT ===== -->
+    <section class="content">
+        <h2>Introduction to Digital Rights</h2>
+        <p>
+            Digital rights are an extension of human rights in the digital age. They protect your freedom, privacy, and security online. 
+            In Nepal, as in many countries, your digital rights are legally protected, but it's important to understand what they are and how to exercise them.
+        </p>
+
+        <div class="highlight">
+            <strong><i class="fas fa-lightbulb"></i> Key Concept:</strong> Your digital rights include the right to privacy, freedom of expression, access to information, 
+            and protection from digital harm.
+        </div>
+
+        <h2>The Right to Privacy</h2>
+        <p>
+            Your personal information, online activities, and communications are protected under Nepal's laws. You have the right to:
+        </p>
+        <ul>
+            <li>Keep your personal data private and secure</li>
+            <li>Know what information is being collected about you</li>
+            <li>Control how your data is used and shared</li>
+            <li>Request deletion of your personal data</li>
+            <li>Opt-out of data collection and targeted advertising</li>
+        </ul>
+
+        <div class="rights-card">
+            <h3><i class="fas fa-lock"></i> Privacy Protection Tips</h3>
+            <p>
+                Protect your privacy by being mindful of what information you share online. 
+                Review privacy settings on social media, use strong passwords, and be cautious about public Wi-Fi networks.
+            </p>
+        </div>
+
+        <h2>Freedom of Expression Online</h2>
+        <p>
+            You have the right to express yourself online without fear of censorship or harassment. However, this right comes with responsibilities:
+        </p>
+        <ul>
+            <li>You can share your views, opinions, and ideas freely on the internet</li>
+            <li>You cannot use this freedom to harass, threaten, or defame others</li>
+            <li>Hate speech and incitement to violence are not protected</li>
+            <li>Spreading false information deliberately may have legal consequences</li>
+        </ul>
+
+        <div class="rights-card">
+            <h3>🗣️ Responsible Expression</h3>
+            <p>
+                Use your freedom of expression responsibly. Think before you post. Verify information before sharing it. 
+                Avoid spreading rumors or unverified claims that could harm others.
+            </p>
+        </div>
+
+        <h2>The Right to Access Information</h2>
+        <p>
+            In Nepal, you have the right to access information held by government and public institutions:
+        </p>
+        <ul>
+            <li>Right to Information Act enables citizens to request government records</li>
+            <li>You can ask organizations how your data is being used</li>
+            <li>Exceptions apply for national security and personal privacy matters</li>
+            <li>Organizations must respond within specified timeframes</li>
+        </ul>
+
+        <h2>Protection from Cybercrime</h2>
+        <p>
+            Nepal's Cybercrime Law protects you from various online offenses:
+        </p>
+
+        <div class="rights-card">
+            <h3><i class="fas fa-bell"></i> Protected Against:</h3>
+            <ul>
+                <li><strong>Hacking:</strong> Unauthorized access to your accounts or devices</li>
+                <li><strong>Phishing:</strong> Deceptive attempts to steal your information</li>
+                <li><strong>Online Harassment:</strong> Cyberbullying, threats, and intimidation</li>
+                <li><strong>Identity Theft:</strong> Using your personal information fraudulently</li>
+                <li><strong>Copyright Infringement:</strong> Illegal distribution of your creative work</li>
+                <li><strong>Sexual Exploitation:</strong> Non-consensual sharing of intimate images</li>
+            </ul>
+        </div>
+
+        <h2>How to Report Cybercrime in Nepal</h2>
+        <p>
+            If you become a victim of cybercrime, here are the steps you can take:
+        </p>
+        <ol>
+            <li><strong>Document the Crime:</strong> Screenshot or record evidence of the incident</li>
+            <li><strong>Preserve Evidence:</strong> Don't delete anything; keep all relevant data</li>
+            <li><strong>File a Report:</strong> Contact the Nepal Police Cyber Bureau or local police station</li>
+            <li><strong>Report to Platform:</strong> Inform the social media or website where the incident occurred</li>
+            <li><strong>Seek Assistance:</strong> Contact cybercrime help organizations for support</li>
+        </ol>
+
+        <div class="highlight">
+            <strong><i class="fas fa-phone"></i> Cyber Emergency:</strong> Nepal Police Cyber Bureau handles cybercrime cases. 
+            You can file a complaint online or visit your nearest police station.
+        </div>
+
+        <h2>Data Protection and GDPR for Nepal</h2>
+        <p>
+            Nepal is developing its own data protection laws. Here's what you should know:
+        </p>
+        <ul>
+            <li>Companies must inform you before collecting personal data</li>
+            <li>You have the right to access your data</li>
+            <li>You can request correction of inaccurate information</li>
+            <li>Organizations must implement data security measures</li>
+            <li>Data breaches must be reported to affected individuals</li>
+        </ul>
+
+        <h2>Your Digital Rights Checklist</h2>
+        <div class="rights-card">
+            <h3><i class="fas fa-check"></i> Protecting Your Rights</h3>
+            <ul>
+                <li>Read privacy policies before using services</li>
+                <li>Review and update your privacy settings regularly</li>
+                <li>Use strong, unique passwords for each account</li>
+                <li>Enable two-factor authentication where available</li>
+                <li>Be cautious about sharing personal information</li>
+                <li>Know how to report abuse and cybercrime</li>
+                <li>Keep your devices and software updated</li>
+                <li>Back up your important data regularly</li>
+            </ul>
+        </div>
+
+        <h2>Resources and Further Help</h2>
+        <p>For more information about your digital rights in Nepal, contact:</p>
+        <ul>
+            <li>Nepal Police Cyber Bureau</li>
+            <li>Nepal's Office of the Privacy Commissioner</li>
+            <li>Local human rights organizations</li>
+            <li>Consumer Protection Organizations</li>
+        </ul>
+
+        <div class="highlight">
+            <strong>Remember:</strong> Your rights online are just as important as your rights offline. 
+            Stay informed, stay safe, and stand up for your digital rights.
+        </div>
+    </section>
+
+    <!-- ===== FOOTER ===== -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>About Us</h4>
+                <p>CyberPulse NP educates and empowers Nepali citizens with cybersecurity knowledge for a safer digital nation.</p>
+            </div>
+
+            <div class="footer-section">
+                <h4>Our Mission</h4>
+                <ul>
+                    <li><strong>Educate</strong> - Provide cybersecurity training</li>
+                    <li><strong>Aware</strong> - Raise digital awareness</li>
+                    <li><strong>Practice</strong> - Promote safe habits</li>
+                    <li><strong>Empower</strong> - Enable citizen protection</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="safety.html">Safety Guidelines</a></li>
+                    <li><a href="threats.html">Common Threats</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Report Cybercrime</a></li>
+                    <li><a href="#">Legal Help</a></li>
+                    <li><a href="#">Support Center</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Connect With Us</h4>
+                <div class="social-links">
+                    <a href="#" title="Facebook">f</a>
+                    <a href="#" title="Twitter">𝕏</a>
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="YouTube">▶</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2026 CyberPulse NP. All rights reserved.</p>
+            <p>Pulse of Cybersecurity Education & Awareness 🇳🇵</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-toggle').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
